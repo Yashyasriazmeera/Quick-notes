@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 def quick_save_note(note: str, file_path: str = "notes.txt") -> str:
+    """Save a note with a UTC timestamp to the destination file path."""
     cleaned_note = note.strip()
     if not cleaned_note:
         raise ValueError("Note cannot be empty.")
@@ -36,6 +37,9 @@ def main() -> int:
         file_written = quick_save_note(" ".join(args.note), file_path=args.file)
     except ValueError as exc:
         print(f"Error: {exc}")
+        return 1
+    except OSError as exc:
+        print(f"Error: could not save note ({exc})")
         return 1
 
     print(f"Saved note to {file_written}")
