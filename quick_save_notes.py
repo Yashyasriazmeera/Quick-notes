@@ -17,10 +17,8 @@ def quick_save_note(note: str, file_path: str = "notes.txt") -> str:
 
     timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
     entry = f"[{timestamp}] {cleaned_note}\n"
-    target.write_text(
-        target.read_text(encoding="utf-8") + entry if target.exists() else entry,
-        encoding="utf-8",
-    )
+    with target.open("a", encoding="utf-8") as handle:
+        handle.write(entry)
     return str(target)
 
 
