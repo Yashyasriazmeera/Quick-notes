@@ -36,7 +36,7 @@ def main() -> int:
     try:
         file_written = quick_save_note(" ".join(args.note), file_path=args.file)
     except ValueError as exc:
-        print(f"Error: invalid note: {exc}")
+        print(f"Error: {exc}")
         return 1
     except OSError as exc:
         print(f"Error: failed to write note to '{args.file}': {exc}")

@@ -19,8 +19,12 @@ class QuickSaveNotesTests(unittest.TestCase):
 
             content = output_file.read_text(encoding="utf-8").splitlines()
             self.assertEqual(2, len(content))
-            self.assertRegex(content[0], r"^\[[^\]]+\]\s")
-            self.assertRegex(content[1], r"^\[[^\]]+\]\s")
+            self.assertRegex(
+                content[0], r"^\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+00:00\]\s"
+            )
+            self.assertRegex(
+                content[1], r"^\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+00:00\]\s"
+            )
             self.assertIn("first", content[0])
             self.assertIn("second", content[1])
 
