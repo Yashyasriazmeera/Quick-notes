@@ -35,7 +35,7 @@ def main() -> int:
     try:
         file_written = quick_save_note(" ".join(args.note), file_path=args.file)
     except ValueError as exc:
-        print(exc)
+        print(f"Error: {exc}")
         return 1
 
     print(f"Saved note to {file_written}")
