@@ -1,3 +1,4 @@
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,6 +19,8 @@ class QuickSaveNotesTests(unittest.TestCase):
 
             content = output_file.read_text(encoding="utf-8").splitlines()
             self.assertEqual(2, len(content))
+            self.assertRegex(content[0], r"^\[[^\]]+\]\s")
+            self.assertRegex(content[1], r"^\[[^\]]+\]\s")
             self.assertIn("first", content[0])
             self.assertIn("second", content[1])
 
